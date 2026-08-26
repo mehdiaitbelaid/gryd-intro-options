@@ -1,0 +1,6 @@
+<!-- The enclosed negative space of the guide's y pair on page 24, taken as the
+     exact complement of assets/pattern-bolt.svg rather than drawn by eye. The
+     two inner edges of the upper y meet at 942.53,670.93 and the two inner
+     edges of the lower y meet at 977.47,961.37; the waist steps sideways
+     between them, and that step is what makes the void read as a bolt. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="891.672 670.93 136.656 290.441"><path fill="#000" d="M 942.531 670.930 L 993.391 816.148 L 1028.328 816.148 L 977.469 961.371 L 926.609 816.148 L 891.672 816.148 Z"/></svg>

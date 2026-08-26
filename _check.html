@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>intro options check</title>
+<style>body{margin:0;font:13px ui-monospace,monospace}#f{width:1440px;height:900px;border:0}</style>
+</head>
+<body>
+<iframe id="f"></iframe>
+<pre id="out">running</pre>
+<script>
+var IDS=[];
+[1,2,3,5,6,7,8,9].forEach(function(n){['a','b','c','d','e'].forEach(function(l){IDS.push(n+l);});});
+var f=document.getElementById('f'),out=document.getElementById('out'),res=[],i=0;
+window.CHECK_DONE=false;
+function next(){
+  if(i>=IDS.length){out.textContent=JSON.stringify(res);window.CHECK_RESULT=res;window.CHECK_DONE=true;return;}
+  var id=IDS[i++];
+  var errs=[];
+  f.onload=function(){
+    var w=f.contentWindow,d=f.contentDocument;
+    w.onerror=function(m){errs.push(String(m));};
+    setTimeout(function(){
+      var de=d.documentElement;
+      res.push({id:id,
+        scrollW:de.scrollWidth,clientW:de.clientWidth,
+        overflow:de.scrollWidth>de.clientWidth+1,
+        introGone:!d.getElementById('grydIntro'),
+        rise:d.body.classList.contains('intro-rise'),
+        live:de.classList.contains('pointer-live'),
+        fieldKids:d.querySelectorAll('.field *').length,
+        anims:(d.getAnimations?d.getAnimations().filter(function(a){return a.playState==='running';}).length:-1),
+        errs:errs});
+      next();
+    },4000);
+  };
+  f.src=id+'.html';
+}
+next();
+</script>
+</body>
+</html>
